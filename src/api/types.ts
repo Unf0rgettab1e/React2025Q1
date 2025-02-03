@@ -3,7 +3,11 @@ export type TAnime = {
   title_english: string;
   synopsis: string;
   url: string;
-  image_url: string;
+  images: {
+    webp: {
+      image_url: string;
+    };
+  };
   score: number;
   episodes: number;
   type: string;

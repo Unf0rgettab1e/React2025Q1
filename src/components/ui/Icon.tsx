@@ -9,7 +9,7 @@ class Icon extends Component<IconProps> {
   render() {
     const { id, className } = this.props;
     return (
-      <svg className={`w-6 h-6 ${className}`}>
+      <svg className={`${className}`}>
         <use href={`/sprite.svg#${id}`} />
       </svg>
     );

@@ -50,8 +50,14 @@
 }
 
 .btn {
-  @apply rounded-lg p-2 px-4 shadow-md shadow-zinc-600;
+  @apply cursor-pointer rounded-lg p-2 px-4 shadow-md shadow-slate-600;
   @apply hover:translate-y-0.5 hover:transition-all;
   @apply focus:outline-none focus:ring-4;
   @apply disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0;
+}
+
+.btn-primary {
+  @apply bg-slate-800 text-slate-100;
+  @apply hover:bg-slate-700;
+  @apply focus:ring-slate-300;
 }

@@ -1,19 +1,12 @@
 import { Component } from 'react';
-import { TAnime } from './api/types';
-import SearchForm from './components/SearchForm/SearchForm';
+import AnimeSearch from './pages/AnimeSearch/AnimeSearch';
 
 export default class App extends Component {
-  state: { searchResults: TAnime[] } = { searchResults: [] };
-
-  onSearch = (results: TAnime[]) => {
-    this.setState({ searchResults: results });
-  };
-
   render() {
     return (
-      <>
-        <SearchForm onSearch={this.onSearch} />
-      </>
+      <div className="w-screen min-h-screen">
+        <AnimeSearch />
+      </div>
     );
   }
 }

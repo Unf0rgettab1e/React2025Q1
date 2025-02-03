@@ -8,17 +8,24 @@ const LC_KEY = 'animeSearchQuery';
 interface SearchFormProps {
   onSearch: (query: string) => void;
   styles?: string;
+  error?: string;
 }
 
-export default class SearchForm extends Component<SearchFormProps> {
-  state: { query: string; results: TAnime[] } = { query: '', results: [] };
+interface SearchFormState {
+  query: string;
+  prevQuery: string;
+  results: TAnime[];
+}
+
+export default class SearchForm extends Component<SearchFormProps, SearchFormState> {
+  state = { query: '', prevQuery: '', results: [] };
 
   componentDidMount() {
-    const query = localStorage.getItem(LC_KEY);
-    this.setState({ query: query || '' });
+    const query = localStorage.getItem(LC_KEY) || '';
 
     if (query) {
       this.props.onSearch(query);
+      this.setState({ query, prevQuery: query });
     }
   }
 
@@ -29,10 +36,11 @@ export default class SearchForm extends Component<SearchFormProps> {
   handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { query } = this.state;
+
+    if ((!query.trim() || query === this.state.prevQuery) && !this.props.error) return;
+
     localStorage.setItem(LC_KEY, query);
-
-    if (!query) return;
-
+    this.setState({ prevQuery: query });
     this.props.onSearch(query);
   };
 
@@ -55,7 +63,6 @@ export default class SearchForm extends Component<SearchFormProps> {
             onChange={this.handleChange}
             className="w-full ps-10 lg:text-lg flex h-14 items-center justify-start rounded-full border bg-transparent pr-9 outline-none"
             placeholder="Search..."
-            required
           />
           <Button type="submit" className="absolute end-2.5 bottom-2.5 btn-primary">
             Search

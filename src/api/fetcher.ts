@@ -30,6 +30,10 @@ export async function fetcher<T>({ method, endpoint, header, body }: TFetcherOpt
       return result;
     })
     .catch(error => {
-      return Promise.reject(error);
+      let message = error instanceof Error ? error.message : 'Unknown error';
+      if (message === 'Failed to fetch') message = 'No Internet connection!';
+      result.error = message;
+
+      return result;
     });
 }

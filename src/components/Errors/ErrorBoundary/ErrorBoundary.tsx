@@ -1,5 +1,5 @@
 import { Component, ReactNode } from 'react';
-import Button from '../ui/Button/Button';
+import Button from '../../ui/Button/Button';
 
 interface Props {
   children: ReactNode;

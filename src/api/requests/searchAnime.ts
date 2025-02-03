@@ -7,8 +7,8 @@ const searchAnime = async (query: string, limit = 10) =>
       return {
         data: res?.data,
         pagination: {
-          last_visible_page: res?.pagination.last_visible_page,
-          has_next_page: res?.pagination.has_next_page,
+          last_visible_page: res?.pagination?.last_visible_page,
+          has_next_page: res?.pagination?.has_next_page,
         },
         status,
         error,

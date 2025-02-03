@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import Icon from '../ui/Icon';
 import { TAnime } from '../../api/types';
+import Button from '../ui/Button/Button';
 
 const LC_KEY = 'animeSearchQuery';
 
@@ -56,9 +57,9 @@ export default class SearchForm extends Component<SearchFormProps> {
             placeholder="Search..."
             required
           />
-          <button type="submit" className="absolute end-2.5 bottom-2.5 btn btn-primary">
+          <Button type="submit" className="absolute end-2.5 bottom-2.5 btn-primary">
             Search
-          </button>
+          </Button>
         </div>
       </form>
     );

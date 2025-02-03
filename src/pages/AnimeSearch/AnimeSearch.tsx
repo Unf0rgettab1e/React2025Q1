@@ -4,6 +4,7 @@ import AnimeList from '../../components/AnimeList/AnimeList';
 import SearchForm from '../../components/SearchForm/SearchForm';
 import searchAnime from '../../api/requests/searchAnime';
 import Loader from '../../components/ui/Loader/Loader';
+import { ErrorButton } from '../../components/ui/Button/ErrorButton/ErrorButton';
 
 export default class AnimeSearch extends Component {
   state: { searchResults: TAnime[]; isLoading: boolean } = { searchResults: [], isLoading: false };
@@ -21,8 +22,9 @@ export default class AnimeSearch extends Component {
           <SearchForm onSearch={this.handleSearch} />
         </div>
 
-        <div className="flex items-center justify-items-stretch h-full">
+        <div className="flex flex-col items-center h-full">
           {this.state.isLoading ? <Loader /> : <AnimeList animeData={this.state.searchResults} />}
+          <ErrorButton />
         </div>
       </div>
     );

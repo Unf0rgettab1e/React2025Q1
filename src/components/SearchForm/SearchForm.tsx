@@ -22,11 +22,8 @@ export default class SearchForm extends Component<SearchFormProps, SearchFormSta
 
   componentDidMount() {
     const query = localStorage.getItem(LC_KEY) || '';
-
-    if (query) {
-      this.props.onSearch(query);
-      this.setState({ query, prevQuery: query });
-    }
+    this.props.onSearch(query);
+    if (query) this.setState({ query, prevQuery: query });
   }
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +34,7 @@ export default class SearchForm extends Component<SearchFormProps, SearchFormSta
     event.preventDefault();
     const { query } = this.state;
 
-    if ((!query.trim() || query === this.state.prevQuery) && !this.props.error) return;
+    if (query.trim() === this.state.prevQuery.trim() && !this.props.error) return;
 
     localStorage.setItem(LC_KEY, query);
     this.setState({ prevQuery: query });

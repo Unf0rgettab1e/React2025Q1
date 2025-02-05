@@ -22,7 +22,7 @@ export default class AnimeList extends Component<AnimeListProps> {
               <AnimeCard
                 key={anime.mal_id}
                 title={anime.title_english}
-                image={anime.images.webp.image_url}
+                image={anime.images.webp.large_image_url}
                 synopsis={anime.synopsis || 'No description available...'}
                 url={anime.url}
               />

@@ -4,8 +4,15 @@ export type TAnime = {
   synopsis: string;
   url: string;
   images: {
+    jpg: {
+      image_url: string;
+      small_image_url: string;
+      large_image_url: string;
+    };
     webp: {
       image_url: string;
+      small_image_url: string;
+      large_image_url: string;
     };
   };
   score: number;

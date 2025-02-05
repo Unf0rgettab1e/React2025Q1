@@ -1,0 +1,62 @@
+@import 'tailwindcss';
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  background-color: var(--color00);
+  color: var(--color100);
+  color-scheme: light dark;
+  font-family: var(--font);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+  font-weight: 400;
+  line-height: 24px;
+  text-rendering: optimizelegibility;
+  text-size-adjust: 100%;
+  --color-scheme: 1;
+  --color00: #1a252d;
+  --color10: #1e2b34;
+  --color20: #2c3b42;
+  --color30: #475156;
+  --color40: #57606a;
+  --color50: #6f7d87;
+  --color60: #8d99a1;
+  --color70: #a9b3bc;
+  --color80: #d0d5db;
+  --color90: #e4e8ea;
+  --color100: #f2f4f6;
+}
+
+@media (prefers-color-scheme: light) {
+  .color-scheme-system {
+    --color-scheme: 0;
+    --color00: #f2f4f6;
+    --color10: #e4e8ea;
+    --color20: #d0d5db;
+    --color30: #a9b3bc;
+    --color40: #8d99a1;
+    --color50: #6f7d87;
+    --color60: #57606a;
+    --color70: #475156;
+    --color80: #2c3b42;
+    --color90: #1e2b34;
+    --color100: #1a252d;
+  }
+}
+
+.btn {
+  @apply cursor-pointer rounded-lg p-2 px-4 shadow-md shadow-slate-600;
+  @apply hover:translate-y-0.5 hover:transition-all;
+  @apply disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0;
+}
+
+.btn-primary {
+  @apply bg-slate-800 text-slate-100;
+  @apply hover:bg-slate-700;
+  @apply focus:ring-slate-300;
+}

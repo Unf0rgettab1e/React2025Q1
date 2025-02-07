@@ -13,17 +13,14 @@ interface SearchFormProps {
 
 interface SearchFormState {
   query: string;
-  prevQuery: string;
   results: TAnime[];
 }
 
 export default class SearchForm extends Component<SearchFormProps, SearchFormState> {
-  state = { query: '', prevQuery: '', results: [] };
+  state = { query: localStorage.getItem(LC_KEY) || '', results: [] };
 
   componentDidMount() {
-    const query = localStorage.getItem(LC_KEY) || '';
-    this.props.onSearch(query);
-    if (query) this.setState({ query, prevQuery: query });
+    this.props.onSearch(this.state.query);
   }
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,11 +30,11 @@ export default class SearchForm extends Component<SearchFormProps, SearchFormSta
   handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { query } = this.state;
+    const prevQuery = localStorage.getItem(LC_KEY);
 
-    if (query.trim() === this.state.prevQuery.trim() && !this.props.error) return;
+    if (query === prevQuery && !this.props.error) return;
 
     localStorage.setItem(LC_KEY, query);
-    this.setState({ prevQuery: query });
     this.props.onSearch(query);
   };
 

@@ -1,6 +1,6 @@
 import { Component } from 'react';
-import AnimeSearch from './pages/AnimeSearch/AnimeSearch';
 import ErrorBoundary from './components/Errors/ErrorBoundary/ErrorBoundary';
+import AnimeSearch from './pages/Main/Main';
 
 export default class App extends Component {
   render() {

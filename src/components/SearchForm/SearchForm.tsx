@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Button from '../ui/Button/Button';
 import Icon from '../ui/Icon';
 import { useSearchQuery } from './useSearchQuery';
@@ -10,6 +11,10 @@ interface SearchFormProps {
 
 export default function SearchForm({ onSearch, styles, error }: SearchFormProps) {
   const { query, setQuery, saveQuery } = useSearchQuery();
+
+  useEffect(() => {
+    onSearch(query);
+  }, []);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

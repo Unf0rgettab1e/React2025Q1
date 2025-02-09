@@ -21,10 +21,12 @@ export type TAnime = {
   source: string;
 };
 
+export type TPagination = {
+  last_visible_page: number;
+  has_next_page: boolean;
+};
+
 export type TJikanResponse = {
   data: TAnime[];
-  pagination: {
-    last_visible_page: number;
-    has_next_page: boolean;
-  };
+  pagination?: TPagination;
 };

@@ -1,20 +1,25 @@
+import { createSearchParams } from 'react-router';
 import { fetcher } from '../fetcher';
 import { TJikanResponse } from '../types';
 
-const searchAnime = async (query: string, limit = 10) =>
-  fetcher<TJikanResponse>({
+const searchAnime = async (query: string, page = 1, limit = 20) => {
+  const params = createSearchParams({
+    q: query,
+    page: page.toString(),
+    limit: limit.toString(),
+  });
+
+  return fetcher<TJikanResponse>({
     method: 'GET',
-    endpoint: `${query ? '' : 'top/'}anime?q=${query}&limit=${limit}`,
+    endpoint: `${query ? '' : 'top/'}anime?${params}`,
   }).then(({ data: res, status, error }) => {
     return {
+      ...res,
       data: res?.data,
-      pagination: {
-        last_visible_page: res?.pagination?.last_visible_page,
-        has_next_page: res?.pagination?.has_next_page,
-      },
       status,
       error,
     };
   });
+};
 
 export default searchAnime;

@@ -1,13 +1,23 @@
-import { TAnime } from '../../api/types';
+import { useEffect, useState } from 'react';
+import Pagination from '~/components/ui/Pagination';
+import { TAnime, TPagination } from '../../api/types';
 import Loader from '../ui/Loader/Loader';
 import AnimeCard from './Card/Card';
 
 interface AnimeListProps {
   animeData: TAnime[];
+  pagination?: TPagination;
   loading: boolean;
+  onChangePage: (page: number) => void;
 }
 
-export default function AnimeList({ animeData, loading }: AnimeListProps) {
+export default function AnimeList({ animeData, pagination, loading, onChangePage }: AnimeListProps) {
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    onChangePage(page);
+  }, [page]);
+
   if (loading) return <Loader />;
 
   return (
@@ -21,6 +31,7 @@ export default function AnimeList({ animeData, loading }: AnimeListProps) {
       ) : (
         <h1 className="text-2xl p-20 mx-auto max-w-200">Nothing was found... Try searching for something else.</h1>
       )}
+      {pagination && <Pagination page={page} lastPage={pagination.last_visible_page || 1} setPage={setPage} />}
     </div>
   );
 }

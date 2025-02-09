@@ -19,6 +19,27 @@ export type TAnime = {
   episodes: number;
   type: string;
   source: string;
+  duration: string;
+  aired: {
+    from: string;
+    to: string;
+    prop: {
+      from: {
+        day: number;
+        month: number;
+        year: number;
+      };
+      to: {
+        day: number;
+        month: number;
+        year: number;
+      };
+      string: 'string';
+    };
+  };
+  rating: string;
+  genres: { mal_id: number; name: string }[];
+  trailer: { url: string; embed_url: string };
 };
 
 export type TPagination = {

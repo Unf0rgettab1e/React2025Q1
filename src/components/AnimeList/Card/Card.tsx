@@ -6,7 +6,7 @@ interface AnimeCardProps {
 }
 
 export default function Card({ data }: AnimeCardProps) {
-  const { title_english, images, url, synopsis, mal_id } = data;
+  const { title_english, images, synopsis, mal_id } = data;
   const location = useLocation();
 
   return (
@@ -21,9 +21,6 @@ export default function Card({ data }: AnimeCardProps) {
       <div className="p-4">
         <h2 className="text-xl font-semibold text-slate-200 mb-2">{title_english}</h2>
         <p className="text-sm text-slate-00 mb-4 line-clamp-3">{synopsis || 'No description available...'}</p>
-        <a href={url} target="_blank" rel="noopener noreferrer" className="inline-block text-blue-500 hover:underline">
-          Read more
-        </a>
       </div>
     </div>
   );

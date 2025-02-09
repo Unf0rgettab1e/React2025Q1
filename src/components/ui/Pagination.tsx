@@ -33,9 +33,6 @@ const Pagination = ({ page, lastPage, setPage }: PaginationProps) => {
     } else if (i >= page - range && i <= page + range) {
       pageNumbers.push(i);
     }
-    // } else if (i === page - range - 1 || i === page + range + 1) {
-    //   pageNumbers.push('_');
-    // }
   }
 
   return (

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router';
 import Pagination from '~/components/ui/Pagination';
 import { TAnime, TPagination } from '../../api/types';
 import Loader from '../ui/Loader/Loader';
@@ -8,14 +9,15 @@ interface AnimeListProps {
   animeData: TAnime[];
   pagination?: TPagination;
   loading: boolean;
-  onChangePage: (page: number) => void;
 }
 
-export default function AnimeList({ animeData, pagination, loading, onChangePage }: AnimeListProps) {
-  const [page, setPage] = useState(1);
+export default function AnimeList({ animeData, pagination, loading }: AnimeListProps) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialPage = Number(searchParams.get('page')) || 1;
+  const [page, setPage] = useState(initialPage);
 
   useEffect(() => {
-    onChangePage(page);
+    setSearchParams({ page: page.toString() });
   }, [page]);
 
   if (loading) return <Loader />;

@@ -1,15 +1,23 @@
-import { useState } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { Outlet, useLocation, useParams } from 'react-router';
 import searchAnime from '../../api/requests/searchAnime';
 import { TAnime } from '../../api/types';
 import AnimeList from '../../components/AnimeList/AnimeList';
 import ErrorButton from '../../components/Errors/ErrorBoundary/ErrorButton/ErrorButton';
 import ErrorResponse from '../../components/Errors/ErrorResponse/ErrorResponse';
-import SearchForm from '../../components/SearchForm/SearchForm';
 
-const Main: React.FC = () => {
+const Main: FC = () => {
+  const location = useLocation();
+  const { id } = useParams();
+  // const navigate = useNavigate();
+  const searchQuery = new URLSearchParams(location.search).get('query');
   const [searchResults, setSearchResults] = useState<TAnime[] | undefined>();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | undefined>('');
+
+  useEffect(() => {
+    handleSearch(searchQuery || '');
+  }, [searchQuery]);
 
   const handleSearch = async (query: string) => {
     setIsLoading(true);
@@ -20,16 +28,13 @@ const Main: React.FC = () => {
   };
 
   return (
-    <div className="grid min-h-screen grid-rows-[auto_1fr_auto] gap-8 mx-auto p-8">
-      <div className="flex-1">
-        <SearchForm onSearch={handleSearch} error={error} />
-      </div>
-
-      <div className="flex flex-col items-center h-full">
+    <div className="flex-1 flex flex-col items-center h-full">
+      <div className="flex justify-center w-full">
         {error && <ErrorResponse errorMessage={error} />}
         {searchResults && <AnimeList animeData={searchResults} loading={isLoading} />}
-        <ErrorButton />
+        {id && <Outlet />}
       </div>
+      <ErrorButton />
     </div>
   );
 };

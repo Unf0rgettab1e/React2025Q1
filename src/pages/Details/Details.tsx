@@ -58,7 +58,7 @@ const AnimeDetails = () => {
                 <span className="flex items-center gap-1">{animeData?.type || '??'}</span>
                 <span className="flex items-center gap-1">Eps {animeData.episodes || '??'}</span>
                 <span className="flex items-center gap-1">{animeData.duration || '??'}</span>
-                <span className="flex items-center gap-1">{animeData.aired.prop.string || '??'}</span>
+                <span className="flex items-center gap-1">{animeData.aired?.prop.string || '??'}</span>
                 <span className="flex items-center gap-1 text-yellow-300">{animeData.score || '??'}</span>
                 <span className="px-2 py-1 text-xs text-white bg-orange-700 rounded md:text-sm">
                   {animeData.rating || '??'}
@@ -67,8 +67,8 @@ const AnimeDetails = () => {
               <hr className="my-4" />
 
               <div className="flex flex-wrap gap-2 md:gap-3">
-                {animeData.genres.length > 0 ? (
-                  animeData.genres.map(genre => (
+                {animeData.genres && animeData.genres?.length > 0 ? (
+                  animeData.genres?.map(genre => (
                     <span
                       key={genre.mal_id}
                       className="px-2 py-1 text-xs text-slate-100 bg-orange-800 rounded md:text-sm"
@@ -82,10 +82,10 @@ const AnimeDetails = () => {
               </div>
 
               <p className="sm:my-4 my-2 text-xs text-justify max-w-56 sm:max-w-[700px] md:my-6 md:text-base">
-                {animeData.synopsis.slice(0, 400) + '...'}
+                {animeData.synopsis?.slice(0, 400) + '...'}
               </p>
 
-              {animeData.trailer.url && (
+              {animeData.trailer?.url && (
                 <Link
                   to={animeData.trailer.url}
                   target="_blank"

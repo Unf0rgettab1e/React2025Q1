@@ -1,37 +1,39 @@
-import { Component } from 'react';
-import AnimeCard from './Card/Card';
-import { TAnime } from '../../api/types';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router';
+import Pagination from '~/components/ui/Pagination';
+import { TAnime, TPagination } from '../../api/types';
 import Loader from '../ui/Loader/Loader';
+import AnimeCard from './Card/Card';
 
 interface AnimeListProps {
   animeData: TAnime[];
+  pagination?: TPagination;
   loading: boolean;
 }
 
-export default class AnimeList extends Component<AnimeListProps> {
-  render() {
-    const { animeData, loading } = this.props;
+export default function AnimeList({ animeData, pagination, loading }: AnimeListProps) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialPage = Number(searchParams.get('page')) || 1;
+  const [page, setPage] = useState(initialPage);
 
-    if (loading) return <Loader />;
+  useEffect(() => {
+    setSearchParams({ page: page.toString() });
+  }, [page]);
 
-    return (
-      <>
-        {animeData.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
-            {animeData.map(anime => (
-              <AnimeCard
-                key={anime.mal_id}
-                title={anime.title_english}
-                image={anime.images.webp.large_image_url}
-                synopsis={anime.synopsis || 'No description available...'}
-                url={anime.url}
-              />
-            ))}
-          </div>
-        ) : (
-          <h1 className="text-2xl p-20 mx-auto max-w-200">Nothing was found... Try searching for something else.</h1>
-        )}
-      </>
-    );
-  }
+  if (loading) return <Loader />;
+
+  return (
+    <div className="@container flex-1">
+      {animeData.length > 0 ? (
+        <div className="grid grid-cols-1 @md:grid-cols-2 @xl:grid-cols-4 @4xl:grid-cols-6 gap-4 p-4">
+          {animeData.map(anime => (
+            <AnimeCard key={anime.mal_id} data={anime} />
+          ))}
+        </div>
+      ) : (
+        <h1 className="text-2xl p-20 mx-auto max-w-200">Nothing was found... Try searching for something else.</h1>
+      )}
+      {pagination && <Pagination page={page} lastPage={pagination.last_visible_page || 1} setPage={setPage} />}
+    </div>
+  );
 }

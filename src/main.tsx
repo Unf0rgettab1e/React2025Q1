@@ -1,5 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router';
+import ErrorBoundary from '~/components/Errors/ErrorBoundary/ErrorBoundary.tsx';
 import App from './App.tsx';
 
 const root = document.createElement('div');
@@ -8,6 +10,10 @@ document.body.appendChild(root);
 
 createRoot(root).render(
   <StrictMode>
-    <App />
+    <BrowserRouter>
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
+    </BrowserRouter>
   </StrictMode>
 );

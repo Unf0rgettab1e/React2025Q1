@@ -23,12 +23,13 @@ const AnimeDetails = () => {
   }, [id]);
 
   return (
-    <div className="text-rose-100 bg-slate-700 flex-1 sticky top-24 h-screen rounded-xl overflow-hidden shadow-xl transition-all duration-300">
+    <div className="fixed inset-0 top-24 z-10 h-screen m-6 sm:m-0 bg-slate-700 sm:sticky sm:flex-1 overflow-hidden rounded-xl shadow-xl transition-all duration-300">
+      <div className="fixed inset-0 h-screen w-screen z-8 bg-slate-800/60 sm:h-0 sm:w-0"></div>
       {!loading && animeData && (
         <div className="relative min-h-screen">
           <Icon
             id="cross"
-            className="absolute top-2 right-2 z-20 text-slate-500 w-10 h-10 cursor-pointer hover:text-slate-400"
+            className="absolute top-1 left-1 z-20 text-slate-500 w-10 h-10 cursor-pointer hover:text-slate-400"
             onClick={() => navigate(`/${location.search}`)}
           />
 
@@ -39,12 +40,12 @@ const AnimeDetails = () => {
               className="object-cover object-center w-full h-full md:object-top"
             />
           </div>
-          <div className="absolute inset-0 bg-slate-950 opacity-60 backdrop-blur-0"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-transparent to-slate-950 opacity-70"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-70"></div>
+          <div className="absolute inset-0 bg-slate-800 opacity-60 backdrop-blur-0"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-800 via-transparent to-slate-600 opacity-70"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-600 via-transparent to-transparent opacity-70"></div>
 
-          <div className="flex justify-center gap-3 p-6 sm:gap-10">
-            <div className="z-20">
+          <div className="flex justify-center flex-wrap gap-3 p-8 sm:gap-10">
+            <div className="z-20 flex-shrink-0">
               <img
                 src={animeData?.images.webp.large_image_url}
                 alt={animeData?.title_english}
@@ -52,26 +53,28 @@ const AnimeDetails = () => {
               />
             </div>
 
-            <div className="z-10">
+            <div className="z-10 flex-1 min-w-[300px] max-w-full">
               <h1 className="text font-bold sm:font-extrabold sm:text-3xl font-poppins">{animeData.title_english}</h1>
-              <div className="flex flex-wrap items-center gap-2 mt-2 text-xs text-slate-300 sm:text-base md:gap-4 md:mt-4">
+              <div className="flex flex-wrap items-center gap-2 mt-2 text-xs font-bold text-slate-300 sm:text-base md:gap-4 md:mt-4">
                 <span className="flex items-center gap-1">{animeData?.type || '??'}</span>
                 <span className="flex items-center gap-1">Eps {animeData.episodes || '??'}</span>
                 <span className="flex items-center gap-1">{animeData.duration || '??'}</span>
                 <span className="flex items-center gap-1">{animeData.aired?.prop.string || '??'}</span>
-                <span className="flex items-center gap-1 text-yellow-300">{animeData.score || '??'}</span>
-                <span className="px-2 py-1 text-xs text-white bg-orange-700 rounded md:text-sm">
+                <span className="flex items-center gap-1  text-yellow-800 dark:text-yellow-300">
+                  {animeData.score || '??'}
+                </span>
+                <span className="px-2 py-1 text-xs text-slate-100  bg-orange-500 dark:bg-orange-700 rounded md:text-sm">
                   {animeData.rating || '??'}
                 </span>
               </div>
               <hr className="my-4" />
 
-              <div className="flex flex-wrap gap-2 md:gap-3">
+              <div className="flex flex-wrap gap-2 md:gap-3 font-bold">
                 {animeData.genres && animeData.genres?.length > 0 ? (
                   animeData.genres?.map(genre => (
                     <span
                       key={genre.mal_id}
-                      className="px-2 py-1 text-xs text-slate-100 bg-orange-800 rounded md:text-sm"
+                      className="px-2 py-1 text-xs text-slate-200 bg-orange-300 dark:bg-orange-800 rounded md:text-sm"
                     >
                       {genre.name}
                     </span>
@@ -81,7 +84,7 @@ const AnimeDetails = () => {
                 )}
               </div>
 
-              <p className="sm:my-4 my-2 text-xs text-justify max-w-56 sm:max-w-[700px] md:my-6 md:text-base">
+              <p className="sm:my-4 my-2 text-xs text-justify md:my-6 md:text-base">
                 {animeData.synopsis?.slice(0, 400) + '...'}
               </p>
 

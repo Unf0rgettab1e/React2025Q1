@@ -1,13 +1,66 @@
 @import 'tailwindcss';
-@tailwind utilities;
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  .dark {
+    --color-slate-50: oklch(0.984 0.003 247.858);
+    --color-slate-100: oklch(0.968 0.007 247.896);
+    --color-slate-200: oklch(0.929 0.013 255.508);
+    --color-slate-300: oklch(0.869 0.022 252.894);
+    --color-slate-400: oklch(0.704 0.04 256.788);
+    --color-slate-500: oklch(0.554 0.046 257.417);
+    --color-slate-600: oklch(0.446 0.043 257.281);
+    --color-slate-700: oklch(0.372 0.044 257.287);
+    --color-slate-800: oklch(0.279 0.041 260.031);
+    --color-slate-900: oklch(0.208 0.042 265.755);
+    --color-slate-950: oklch(0.129 0.042 264.695);
+
+    --color-rose-50: oklch(0.969 0.015 12.422);
+    --color-rose-100: oklch(0.941 0.03 12.58);
+    --color-rose-200: oklch(0.892 0.058 10.001);
+    --color-rose-300: oklch(0.81 0.117 11.638);
+    --color-rose-400: oklch(0.712 0.194 13.428);
+    --color-rose-500: oklch(0.645 0.246 16.439);
+    --color-rose-600: oklch(0.586 0.253 17.585);
+    --color-rose-700: oklch(0.514 0.222 16.935);
+    --color-rose-800: oklch(0.455 0.188 13.697);
+    --color-rose-900: oklch(0.41 0.159 10.272);
+    --color-rose-950: oklch(0.271 0.105 12.094);
+  }
+
+  :root {
+    --color-slate-950: oklch(0.984 0.003 247.858);
+    --color-slate-900: oklch(0.968 0.007 247.896);
+    --color-slate-800: oklch(0.929 0.013 255.508);
+    --color-slate-700: oklch(0.869 0.022 252.894);
+    --color-slate-600: oklch(0.704 0.04 256.788);
+    --color-slate-500: oklch(0.554 0.046 257.417);
+    --color-slate-400: oklch(0.446 0.043 257.281);
+    --color-slate-300: oklch(0.372 0.044 257.287);
+    --color-slate-200: oklch(0.279 0.041 260.031);
+    --color-slate-100: oklch(0.208 0.042 265.755);
+    --color-slate-50: oklch(0.129 0.042 264.695);
+
+    --color-rose-950: oklch(0.969 0.015 12.422);
+    --color-rose-900: oklch(0.941 0.03 12.58);
+    --color-rose-800: oklch(0.892 0.058 10.001);
+    --color-rose-700: oklch(0.81 0.117 11.638);
+    --color-rose-600: oklch(0.712 0.194 13.428);
+    --color-rose-500: oklch(0.645 0.246 16.439);
+    --color-rose-400: oklch(0.586 0.253 17.585);
+    --color-rose-300: oklch(0.514 0.222 16.935);
+    --color-rose-200: oklch(0.455 0.188 13.697);
+    --color-rose-100: oklch(0.41 0.159 10.272);
+    --color-rose-50: oklch(0.271 0.105 12.094);
+  }
+}
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  background-color: var(--color00);
-  color: var(--color100);
   color-scheme: light dark;
   font-family: var(--font);
   font-size: 16px;
@@ -18,35 +71,6 @@
   line-height: 24px;
   text-rendering: optimizelegibility;
   text-size-adjust: 100%;
-  --color-scheme: 1;
-  --color00: #1a252d;
-  --color10: #1e2b34;
-  --color20: #2c3b42;
-  --color30: #475156;
-  --color40: #57606a;
-  --color50: #6f7d87;
-  --color60: #8d99a1;
-  --color70: #a9b3bc;
-  --color80: #d0d5db;
-  --color90: #e4e8ea;
-  --color100: #f2f4f6;
-}
-
-@media (prefers-color-scheme: light) {
-  .color-scheme-system {
-    --color-scheme: 0;
-    --color00: #f2f4f6;
-    --color10: #e4e8ea;
-    --color20: #d0d5db;
-    --color30: #a9b3bc;
-    --color40: #8d99a1;
-    --color50: #6f7d87;
-    --color60: #57606a;
-    --color70: #475156;
-    --color80: #2c3b42;
-    --color90: #1e2b34;
-    --color100: #1a252d;
-  }
 }
 
 .btn {

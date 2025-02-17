@@ -36,11 +36,11 @@ const Pagination = ({ page, lastPage, setPage }: PaginationProps) => {
   }
 
   return (
-    <div className="flex items-center justify-center gap-2 p-3">
+    <div className="flex items-center justify-center gap-2 p-3 text-xl font-bold">
       {page > 1 && (
         <button
           onClick={handlePrevPage}
-          className="flex items-center px-2 py-2 text-sm font-semibold text-slate-100 transition-all transform rounded-md hover:text-rose-300 hover:scale-110 cursor-pointer"
+          className="flex items-center px-1 py-2 text-slate-200 transition-all transform rounded-md hover:text-rose-300 hover:scale-110 cursor-pointer"
         >
           {'<'}
           <span className="sr-only">Previous</span>
@@ -55,8 +55,8 @@ const Pagination = ({ page, lastPage, setPage }: PaginationProps) => {
               setPage(num);
               scrollTop();
             }}
-            className={`px-2 py-1 font-bold text-rose-300 rounded-md sm:px-3 sm:py-2 hover:text-rose-100 transition-all transform hover:scale-120 cursor-pointer ${
-              num === page ? 'font-bold text-rose-100 bg-rose-700' : ''
+            className={`px-1 py-1 text-rose-300 rounded-md sm:px-2 sm:py-2 hover:text-rose-200 transition-all transform hover:scale-120 cursor-pointer ${
+              num === page ? 'text-rose-100 bg-rose-800' : ''
             }`}
           >
             {num}
@@ -67,7 +67,7 @@ const Pagination = ({ page, lastPage, setPage }: PaginationProps) => {
       {page < lastPage && (
         <button
           onClick={handleNextPage}
-          className="flex items-center px-2 py-2 text-sm font-semibold text-white transition-all transform rounded-md sm:px-3 sm:py-2 hover:text-yellow-500 hover:scale-110 cursor-pointer"
+          className="flex items-center px-1 py-2 text-slate-200 transition-all transform rounded-md hover:text-rose-300 hover:scale-110 cursor-pointer"
         >
           {'>'}
           <span className="sr-only">Next</span>

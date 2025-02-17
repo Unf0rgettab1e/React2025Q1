@@ -25,7 +25,7 @@ export default function AnimeList({ animeData, pagination, loading }: AnimeListP
   return (
     <div className="@container flex-1">
       {animeData.length > 0 ? (
-        <div className="grid grid-cols-1 @md:grid-cols-2 @xl:grid-cols-4 @4xl:grid-cols-6 gap-4 p-4">
+        <div className="grid grid-cols-1 @md:grid-cols-2 @xl:grid-cols-4 @4xl:grid-cols-6 gap-4">
           {animeData.map(anime => (
             <AnimeCard key={anime.mal_id} data={anime} />
           ))}

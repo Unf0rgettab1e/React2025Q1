@@ -28,7 +28,7 @@ const Main: FC = () => {
 
   return (
     <div className="flex-1 flex flex-col items-center h-full">
-      <div className="flex justify-center w-full">
+      <div className="flex justify-center w-full p-4 gap-x-4 md:gap-x-8">
         {error && !searchResults && <ErrorResponse errorMessage={error} />}
         {searchResults?.data && (
           <AnimeList animeData={searchResults.data} pagination={searchResults.pagination} loading={isLoading} />

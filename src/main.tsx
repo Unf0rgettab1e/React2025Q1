@@ -4,6 +4,8 @@ import { BrowserRouter } from 'react-router';
 import ErrorBoundary from '~/components/Errors/ErrorBoundary/ErrorBoundary.tsx';
 import ThemeProvider from '~/context/ThemeContext/ThemeProvider.tsx';
 import App from './App.tsx';
+import { Provider } from 'react-redux';
+import { store } from '~/store/store.ts';
 
 const root = document.createElement('div');
 root.classList.add('root');
@@ -14,7 +16,9 @@ createRoot(root).render(
     <BrowserRouter>
       <ErrorBoundary>
         <ThemeProvider>
-          <App />
+          <Provider store={store}>
+            <App />
+          </Provider>
         </ThemeProvider>
       </ErrorBoundary>
     </BrowserRouter>

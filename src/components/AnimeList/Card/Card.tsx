@@ -2,10 +2,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router';
 import { toggleItem } from '~/store/animeDownloadSlice';
 import type { AppDispatch, RootState } from '~/store/store';
-import { TAnime } from '../../../api/types';
+import { Anime } from '~/types/animeApi';
 
 interface AnimeCardProps {
-  data: TAnime;
+  data: Anime;
 }
 
 export default function Card({ data }: AnimeCardProps) {

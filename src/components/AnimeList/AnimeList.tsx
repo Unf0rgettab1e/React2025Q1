@@ -1,26 +1,29 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router';
+import ErrorResponse from '~/components/Errors/ErrorResponse/ErrorResponse';
 import Pagination from '~/components/ui/Pagination';
-import { TAnime, TPagination } from '../../api/types';
+import { useGetAnimeListQuery } from '~/store/apiSlice';
+import getApiErrorMessage from '~/utils/getApiErrorMessage';
 import Loader from '../ui/Loader/Loader';
 import AnimeCard from './Card/Card';
 
-interface AnimeListProps {
-  animeData: TAnime[];
-  pagination?: TPagination;
-  loading: boolean;
-}
-
-export default function AnimeList({ animeData, pagination, loading }: AnimeListProps) {
+export default function AnimeList() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const initialPage = Number(searchParams.get('page')) || 1;
-  const [page, setPage] = useState(initialPage);
+  const query = searchParams.get('query') || '';
+  const [page, setPage] = useState(() => Number(searchParams.get('page')) || 1);
+  const {
+    data: { data: animeData = [], pagination } = {},
+    isLoading,
+    isError,
+    error,
+  } = useGetAnimeListQuery({ query, page });
 
   useEffect(() => {
     setSearchParams({ page: page.toString() });
   }, [page]);
 
-  if (loading) return <Loader />;
+  if (isLoading) return <Loader />;
+  if (isError && error) return <ErrorResponse errorMessage={getApiErrorMessage(error)} />;
 
   return (
     <div className="@container flex-1">

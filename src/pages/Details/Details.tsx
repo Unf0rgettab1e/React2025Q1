@@ -1,31 +1,18 @@
-import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate, useParams } from 'react-router';
-import getAnimeById from '~/api/requests/getAnimeByid';
-import { TAnime } from '~/api/types';
 import Icon from '~/components/ui/Icon';
 import Loader from '~/components/ui/Loader/Loader';
+import { useGetAnimeByIdQuery } from '~/store/apiSlice';
 
 const AnimeDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const [loading, setLoading] = useState(false);
-  const [animeData, setAnimeData] = useState<TAnime>();
-
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      getAnimeById(Number(id)).then(res => {
-        setAnimeData(res.data);
-        setLoading(false);
-      });
-    });
-  }, [id]);
+  const { data: { data: animeData = null } = {}, isLoading } = useGetAnimeByIdQuery(Number(id));
 
   return (
     <div className="fixed inset-0 top-24 z-10 h-screen m-6 sm:m-0 bg-slate-700 sm:sticky sm:flex-1 overflow-hidden rounded-xl shadow-xl transition-all duration-300">
       <div className="fixed inset-0 h-screen w-screen z-8 bg-slate-800/60 sm:h-0 sm:w-0"></div>
-      {!loading && animeData && (
+      {!isLoading && animeData && (
         <div className="relative min-h-screen">
           <Icon
             id="cross"
@@ -102,7 +89,7 @@ const AnimeDetails = () => {
           </div>
         </div>
       )}
-      <div className="flex h-screen">{loading && <Loader />}</div>
+      <div className="flex h-screen">{isLoading && <Loader />}</div>
     </div>
   );
 };

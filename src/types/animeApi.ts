@@ -1,4 +1,4 @@
-export type TAnime = {
+export interface Anime {
   mal_id: number;
   title_english: string;
   synopsis?: string;
@@ -34,20 +34,26 @@ export type TAnime = {
         month: number;
         year: number;
       };
-      string: 'string';
+      string: string;
     };
   };
   rating?: string;
   genres?: { mal_id: number; name: string }[];
   trailer?: { url: string; embed_url: string };
-};
+}
 
-export type TPagination = {
+export interface AnimePagination {
   last_visible_page: number;
   has_next_page: boolean;
-};
+}
 
 export type TJikanResponse = {
-  data: TAnime[];
-  pagination?: TPagination;
+  data: Anime[];
+  pagination: AnimePagination;
+};
+
+export type TJikanRequestParams = {
+  query?: string;
+  page?: number;
+  limit?: number;
 };

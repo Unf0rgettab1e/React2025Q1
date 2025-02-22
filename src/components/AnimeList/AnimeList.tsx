@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router';
+import Flyout from '~/components/AnimeList/Flyout/Flyout';
 import ErrorResponse from '~/components/Errors/ErrorResponse/ErrorResponse';
 import Pagination from '~/components/ui/Pagination';
 import { useGetAnimeListQuery } from '~/store/apiSlice';
@@ -37,6 +38,7 @@ export default function AnimeList() {
         <h1 className="text-2xl p-20 mx-auto max-w-200">Nothing was found... Try searching for something else.</h1>
       )}
       {pagination && <Pagination page={page} lastPage={pagination.last_visible_page || 1} setPage={setPage} />}
+      <Flyout />
     </div>
   );
 }

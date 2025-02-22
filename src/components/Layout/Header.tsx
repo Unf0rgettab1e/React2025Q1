@@ -6,7 +6,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-10 bg-slate-800/90 shadow-lg">
+    <nav className="fixed top-0 left-0 w-full z-100 bg-slate-800/90 shadow-lg">
       <div className="flex items-center justify-between gap-x-4 px-2 py-3 sm:px-10 sm:py-0">
         <div>
           <img src="/logo.svg" alt="logo" className="max-h-20 cursor-pointer" onClick={() => navigate('/')} />

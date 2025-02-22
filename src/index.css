@@ -74,7 +74,7 @@
 }
 
 .btn {
-  @apply cursor-pointer rounded-lg p-2 px-4 shadow-md shadow-slate-600;
+  @apply cursor-pointer rounded-lg p-2 px-4 shadow-md shadow-slate-600 transition;
   @apply hover:translate-y-0.5 hover:transition-all;
   @apply disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0;
 }

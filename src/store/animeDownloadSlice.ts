@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TAnime } from '~/api/types';
+import { Anime } from '~/types/animeApi';
 
 interface AnimeDownloadState {
-  selectedItems: TAnime[];
+  selectedItems: Anime[];
 }
 
 const initialState: AnimeDownloadState = {
@@ -13,7 +13,7 @@ export const animeDownloadSlice = createSlice({
   name: 'animeDownload',
   initialState,
   reducers: {
-    toggleItem: (state, action: PayloadAction<TAnime>) => {
+    toggleItem: (state, action: PayloadAction<Anime>) => {
       const { mal_id } = action.payload;
       const index = state.selectedItems.findIndex(item => item.mal_id === mal_id);
       if (index === -1) {

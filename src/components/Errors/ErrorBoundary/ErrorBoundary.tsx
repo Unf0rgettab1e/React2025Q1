@@ -26,7 +26,11 @@ export default class ErrorBoundary extends Component<Props, State> {
         <div className="flex flex-col gap-4 items-center justify-center h-screen text-center">
           <h1 className="text-2xl font-bold text-red-500">Oops! Something went wrong 😢</h1>
           <p className="text-gray-600">Write to tech support when possible....</p>
-          <Button className="btn-primary" onClick={() => this.setState({ hasError: false })}>
+          <Button
+            className="btn-primary"
+            data-testid="back-to-search"
+            onClick={() => this.setState({ hasError: false })}
+          >
             Back to search
           </Button>
         </div>

@@ -47,7 +47,7 @@ export default function SearchForm({ styles }: SearchFormProps) {
         <div className="absolute inset-y-0 end-22 flex items-center ps-3 cursor-pointer" onClick={() => setQuery('')}>
           <Icon id="cross" className="w-6 h-6 text-zinc-500 hover:text-zinc-400" />
         </div>
-        <Button type="submit" className="absolute end-2.5 bottom-2.5 btn-primary">
+        <Button type="submit" className="absolute end-2.5 bottom-2.5 btn-primary" testId="search-button">
           Search
         </Button>
       </div>

@@ -1,22 +1,19 @@
-import { Component } from 'react';
+import { FC } from 'react';
 
 interface ButtonProps {
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
   className?: string;
+  testId?: string;
   children: React.ReactNode | string;
 }
 
-export default class Button extends Component<ButtonProps> {
-  render() {
-    return (
-      <button
-        type={this.props.type || 'button'}
-        className={`btn ${this.props.className || ''}`}
-        onClick={this.props.onClick}
-      >
-        {this.props.children}
-      </button>
-    );
-  }
-}
+const Button: FC<ButtonProps> = ({ type, className, onClick, testId, children }) => {
+  return (
+    <button type={type || 'button'} className={`btn ${className || ''}`} onClick={onClick} data-testid={testId}>
+      {children}
+    </button>
+  );
+};
+
+export default Button;

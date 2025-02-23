@@ -2,10 +2,6 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import ErrorBoundary from './ErrorBoundary';
 
-// vi.mock('~/components/ui/Button/Button', () => ({
-//   default: vi.fn(({ children, onClick }) => <button onClick={onClick}>{children}</button>),
-// }));
-
 describe('ErrorBoundary', () => {
   const ErrorComponent = () => {
     throw new Error('Test error');

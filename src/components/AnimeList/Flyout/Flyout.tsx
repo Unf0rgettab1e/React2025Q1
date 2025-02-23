@@ -1,4 +1,3 @@
-// components/Flyout.tsx
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '~/components/ui/Button/Button';
 import { clearSelections } from '~/store/animeDownloadSlice';

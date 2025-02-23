@@ -1,10 +1,18 @@
+import { FC } from 'react';
+import { useSearchParams } from 'react-router';
+
 interface PaginationProps {
-  page: number;
   lastPage: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Pagination = ({ page, lastPage, setPage }: PaginationProps) => {
+const Pagination: FC<PaginationProps> = ({ lastPage }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = Number(searchParams.get('page')) || 1;
+
+  const setPage = (newPage: number) => {
+    setSearchParams({ page: newPage.toString() });
+  };
+
   const scrollTop = () => {
     scrollTo({
       behavior: 'smooth',
@@ -13,17 +21,17 @@ const Pagination = ({ page, lastPage, setPage }: PaginationProps) => {
   };
 
   const handleNextPage = () => {
-    setPage(prev => prev + 1);
+    setPage(page + 1);
     scrollTop();
   };
 
   const handlePrevPage = () => {
-    setPage(prev => prev - 1);
+    setPage(page - 1);
     scrollTop();
   };
 
   const pageNumbers = [];
-  const range = 1;
+  const range = 2;
 
   for (let i = 1; i <= lastPage; i++) {
     if (i === 1) {

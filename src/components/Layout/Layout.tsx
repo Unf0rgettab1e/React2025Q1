@@ -7,7 +7,7 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
   const { theme } = useTheme();
 
   return (
-    <div className={`${theme} bg-slate-900 text-slate-100`}>
+    <div className={`${theme} bg-slate-900 text-slate-100`} data-testid="layout">
       <Header />
       <div className="pt-24 min-h-screen flex flex-col">
         {children || <Outlet />}

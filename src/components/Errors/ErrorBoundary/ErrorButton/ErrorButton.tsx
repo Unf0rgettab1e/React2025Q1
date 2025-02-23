@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Button from '../../../ui/Button/Button';
+import Button from '~/components/ui/Button/Button';
 
 export default function ErrorButton() {
   const [throwError, setThrowError] = useState(false);

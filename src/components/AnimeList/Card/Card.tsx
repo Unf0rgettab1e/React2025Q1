@@ -9,7 +9,7 @@ interface AnimeCardProps {
 }
 
 export default function Card({ data }: AnimeCardProps) {
-  const { title_english, images, synopsis, mal_id } = data;
+  const { title_english, images, synopsis, mal_id, title } = data;
   const location = useLocation();
   const dispatch = useDispatch<AppDispatch>();
   const selectedCards = useSelector((state: RootState) => state.animeDownload.selectedItems);
@@ -25,10 +25,11 @@ export default function Card({ data }: AnimeCardProps) {
       to={`/details/${mal_id}${location.search}`}
       className="relative w-full mx-auto bg-slate-700 rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl"
       onContextMenu={handleRightClick}
+      data-testid="card"
     >
       <img
         src={images.webp.large_image_url}
-        alt={title_english}
+        alt={title_english || title}
         className="w-full h-48 object-cover transition-transform duration-500 ease-in-out transform hover:scale-110"
       />
       <div className="p-4">
